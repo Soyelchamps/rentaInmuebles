@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   dni: {
@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin', 'employee'],
+    enum: ["user", "admin", "employee"],
     required: true,
-    default: 'user',
+    default: "user",
   },
   phoneNumber: {
     type: String,
@@ -39,12 +39,18 @@ const userSchema = new mongoose.Schema({
   },
   userName: {
     type: String,
-    required: true,
+    required: false,
   },
   isVerified: {
     type: Boolean,
-    default: false,
+    default: true,
+  },
+  adrress: {
+    type: String,
+  },
+  contactPersons: {
+    type: String,
   },
 });
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model("User", userSchema);

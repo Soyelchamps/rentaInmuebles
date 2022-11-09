@@ -1,36 +1,37 @@
-import Cinema from '../models/Cinema.js';
+import Cinema from "../models/Cinema.js";
 
 const remove = async (req, res) => {
-    const { id } = req.params;
+  const { id } = req.params;
   try {
-    const cinema = await Cinema.findByIdAndUpdate(id, { isDeleted: true },
-        {new:true},
+    const cinema = await Cinema.findByIdAndUpdate(
+      id,
+      { isDeleted: true },
+      { new: true }
     );
     return res.json({
-      msg: 'Cinema eliminado',
+      msg: "Cinema eliminado",
       cinema,
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'Error al eliminar cinema',
+      msg: "Error al eliminar cinema",
       error,
     });
   }
-  };
+};
 
-export {remove}
-
+export { remove };
 
 const create = async (req, res) => {
   try {
     const cinema = await Cinema.create(req.body);
     return res.json({
-      msg: 'Cine creado satisfactoriamente :)',
+      msg: "Cine creado satisfactoriamente :)",
       cinema,
     });
   } catch (error) {
     res.status(500).json({
-      msg: 'Error al intentar crear un cine',
+      msg: "Error al intentar crear un cine",
       error,
     });
   }

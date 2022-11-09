@@ -1,10 +1,8 @@
-import joi from 'joi';
-import ObjectId from 'joi-objectid';
+import joi from "joi";
+import ObjectId from "joi-objectid";
 const JoiObjectId = ObjectId(joi);
-const reviewEditValidator = async (req, res, next) => {
-
-    
-  const reviewSchema = joi.object({
+const messagesEditValidator = async (req, res, next) => {
+  const messagesSchema = joi.object({
     comment: joi.string().empty().required(),
     rating: joi.number().integer().min(1).max(5).required(),
     movie: JoiObjectId().required(),
@@ -12,14 +10,14 @@ const reviewEditValidator = async (req, res, next) => {
   });
 
   try {
-    await reviewSchema.validateAsync(req.body);
+    await messagesSchema.validateAsync(req.body);
     next();
   } catch (error) {
     return res.status(400).json({
-      msg: 'Bad request',
+      msg: "Bad request",
       error,
     });
   }
 };
 
-export { reviewEditValidator };
+export { messagesEditValidator };
