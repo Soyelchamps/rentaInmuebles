@@ -7,7 +7,7 @@ import authRoutes from "./routes/authRoutes.js";
 import movieRoutes from "./routes/movieRoutes.js";
 import cinemaRoutes from "./routes/cinemaRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
-import projectionRoutes from "./routes/projectionRoutes.js";
+import propertiesRoutes from "./routes/propertiesRoutes.js";
 
 const api = express();
 
@@ -25,7 +25,7 @@ api.get("/status", (_, res) => {
 api.use("/auth", authRoutes);
 api.use("/movies", movieRoutes);
 api.use("/cinemas", cinemaRoutes);
-api.use("/projections", projectionRoutes);
+api.use("/properties", propertiesRoutes);
 api.use("/messages", messagesRoutes);
 api.use("/users", userRouter);
 api.use("/tickets", ticketRoutes);
