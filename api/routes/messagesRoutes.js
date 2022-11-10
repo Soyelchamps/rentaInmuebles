@@ -5,10 +5,13 @@ import { messagesEditValidator } from "../middlewares/messagesEditValidator.js";
 
 const router = express.Router();
 
-router.route("/").post(authValidator, messagesController.create);
+router.route("/").post(messagesController.create).get(messagesController.read);
 router
   .route("/:id")
-  .put(messagesEditValidator, authValidator, messagesController.edit)
+  .get(messagesController.readById)
+  .put(messagesController.edit)
+
+  // .put(messagesEditValidator, authValidator, messagesController.edit)
   .delete(messagesController.remove);
 
 export default router;

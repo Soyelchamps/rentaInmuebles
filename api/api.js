@@ -2,10 +2,7 @@ import express from "express";
 import morgan from "morgan";
 
 import userRouter from "./routes/userRouter.js";
-import ticketRoutes from "./routes/ticketRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import movieRoutes from "./routes/movieRoutes.js";
-import cinemaRoutes from "./routes/cinemaRoutes.js";
 import messagesRoutes from "./routes/messagesRoutes.js";
 import propertiesRoutes from "./routes/propertiesRoutes.js";
 
@@ -23,11 +20,8 @@ api.get("/status", (_, res) => {
 });
 
 api.use("/auth", authRoutes);
-api.use("/movies", movieRoutes);
-api.use("/cinemas", cinemaRoutes);
 api.use("/properties", propertiesRoutes);
 api.use("/messages", messagesRoutes);
 api.use("/users", userRouter);
-api.use("/tickets", ticketRoutes);
 
 export default api;

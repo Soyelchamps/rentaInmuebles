@@ -2,8 +2,8 @@ import Messages from "../models/Messages.js";
 
 const create = async (req, res) => {
   try {
-    req.body.user = req.user.id;
-    const messages = await Messages.messages(req.body);
+    // req.body.user = req.user.id;
+    const messages = await Messages.create(req.body);
     return res.json({ msg: "Messages Created", messages });
   } catch (error) {
     return res.status(500).json({
@@ -13,22 +13,42 @@ const create = async (req, res) => {
   }
 };
 
+const read = async (req, res) => {
+  try {
+    const messages = await Messages.find(req.query);
+    return res.json({
+      msg: "Mensages encontrados",
+      messages,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Error al buscar mensages",
+      error,
+    });
+  }
+};
+
+const readById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const messages = await Messages.findById(id);
+    return res.json({
+      msg: "Mensages encontrado",
+      messages,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Error al buscar mensages",
+      error,
+    });
+  }
+};
+
 const edit = async (req, res) => {
   const { id } = req.params;
-  const { id: userId } = req.user;
+  //const { id: userId } = req.user;
   try {
-    const searchComment = await Messages.findById(id).populate("user");
-    if (!searchComment) {
-      return res.status(404).json({
-        msg: "Messages not founded",
-      });
-    }
-    const { user } = searchUser;
-    if (user.id !== userId) {
-      return res.status(403).json({
-        msg: "You don't have permissions",
-      });
-    }
+    const searchComment = await Messages.findById(id);
     const messages = await Messages.findByIdAndUpdate(id, req.body, {
       new: true,
     });
@@ -61,4 +81,4 @@ const remove = async (req, res) => {
   }
 };
 
-export { create, edit, remove };
+export { create, edit, remove, read, readById };

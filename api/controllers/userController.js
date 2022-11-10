@@ -195,4 +195,22 @@ const login = async (req, res) => {
   }
 };
 
-export { verifyUser, read, readById, login, update, create };
+const remove = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByIdAndUpdate(id, {
+      isActive: false,
+    });
+    return res.json({
+      msg: "User deleted",
+      user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Error deleting the user",
+      error,
+    });
+  }
+};
+
+export { verifyUser, read, readById, login, update, create, remove };

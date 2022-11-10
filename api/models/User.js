@@ -1,11 +1,6 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  dni: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   name: {
     type: String,
     required: true,
@@ -18,11 +13,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  role: {
+  dni: {
     type: String,
-    enum: ["user", "admin", "employee"],
     required: true,
-    default: "user",
+    unique: true,
   },
   phoneNumber: {
     type: String,
@@ -33,9 +27,23 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  address: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,
+  },
+  contacts: [
+    {
+      type: String,
+    },
+  ],
+  role: {
+    type: String,
+    enum: ["user", "admin"],
+    required: true,
+    default: "user",
   },
   userName: {
     type: String,
@@ -45,11 +53,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  adrress: {
-    type: String,
-  },
-  contactPersons: {
-    type: String,
+  isActive: {
+    type: Boolean,
+    default: true,
   },
 });
 

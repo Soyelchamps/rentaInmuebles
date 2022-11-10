@@ -7,6 +7,9 @@ router.route("/").get(userController.read).post(userController.create);
 router
   .route("/:id")
   .get(userController.readById)
-  .put(updateUserValidator, userController.update);
+  .put(userController.update)
+  .delete(userController.remove);
+
+//  .put(updateUserValidator, userController.update);
 
 export default router;

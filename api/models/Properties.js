@@ -31,26 +31,18 @@ const propertiesSchema = new mongoose.Schema({
   price: {
     type: Number,
   },
-  Description: {
+  description: {
     type: String,
   },
   rooomNumber: {
     type: Number,
   },
-  Pictures: {
+  pictures: {
     type: String,
   },
-  date: {
-    type: Date,
-  },
-  language: {
-    type: String,
-  },
-  subtitles: {
-    type: String,
-  },
-  price: {
-    type: Number,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   isDeleted: {
     type: Boolean,

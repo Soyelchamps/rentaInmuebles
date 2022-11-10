@@ -1,17 +1,17 @@
 import mongoose from "mongoose";
 
 const messagesSchema = new mongoose.Schema({
-  transmitter: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+  name: {
+    type: String,
   },
-
-  comment: String,
-  rating: Number,
-  movie: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Movie",
+  message: {
+    type: String,
   },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  //property: {
+  // type: mongoose.Schema.Types.ObjectId,
+  // ref: "Propert",
+  //},
   enabled: Boolean,
 });
 

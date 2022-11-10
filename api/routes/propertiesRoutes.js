@@ -4,10 +4,14 @@ import { editPropertiesValidator } from "../middlewares/editPropertiesValidator.
 
 const router = express.Router();
 
-router.route("/").post(propertiesController.create);
+router
+  .route("/")
+  .post(propertiesController.create)
+  .get(propertiesController.read);
 router
   .route("/:id")
-  .put(editPropertiesValidator, propertiesController.update)
+  .get(propertiesController.readById)
+  .put(propertiesController.update)
   .delete(propertiesController.remove);
 
 export default router;

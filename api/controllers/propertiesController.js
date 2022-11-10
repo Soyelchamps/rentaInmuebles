@@ -15,6 +15,37 @@ const create = async (req, res) => {
   }
 };
 
+const read = async (req, res) => {
+  try {
+    const properties = await Properties.find(req.query);
+    return res.json({
+      msg: "Propiedades encontradas",
+      properties,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Error al buscar items",
+      error,
+    });
+  }
+};
+
+const readById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const properties = await Properties.findById(id);
+    return res.json({
+      msg: "propiedades ubicadas",
+      properties,
+    });
+  } catch (error) {
+    return res.json({
+      msg: "Error al buscar por id",
+      error,
+    });
+  }
+};
+
 const update = async (req, res) => {
   const { id } = req.params;
   try {
@@ -53,4 +84,4 @@ const remove = async (req, res) => {
   }
 };
 
-export { create, update, remove };
+export { create, update, remove, read, readById };
